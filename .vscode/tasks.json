@@ -3,11 +3,19 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "buildlocal",
+			"script": "buildtest",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: buildlocal",
-			"detail": "webpack --env mode=localtest"
+			"label": "npm: buildtest",
+			"detail": "webpack --env mode=development"
+		},
+		{
+			"type": "npm",
+			"script": "buildprod",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: buildprod",
+			"detail": "webpack --env mode=production"
 		}
 	]
 }

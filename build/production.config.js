@@ -1,33 +1,15 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   output: {
-    filename: '[contenthash].js',
-    publicPath: '/basketball/'
+    publicPath: '/'
   },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [ MiniCssExtractPlugin.loader, { loader: 'css-loader' }, { loader: 'sass-loader' } ]
-      },
-      {
-        test: /\.css$/,
-        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
-      },
-      {
-        test: /\.(png|jpg|gif|svg|ico)$/,
-        loader: 'file-loader',
-        options: {
-          outputPath: './assets',
-          name: '[contenthash].[ext]'
-        }
-      }
+  optimization: {
+    minimize: true,
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin()
     ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[contenthash].css'
-    })
-  ]
+  }
 }

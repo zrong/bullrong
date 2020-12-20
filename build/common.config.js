@@ -1,23 +1,21 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const path = require('path')
+const staticDir = path.resolve(__dirname, '../static')
 
 module.exports = {
   entry: './src/main.js',
   target: ['web', 'es5'],
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, '../static'),
+    path: staticDir,
     publicPath: '/'
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src')
     }
-  },
-  optimization: {
-    // minify: false
   },
   module: {
     rules: [
@@ -30,18 +28,48 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif|svg|ico)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          outputPath: staticDir
+        }
+      },
+      {
+        test: require.resolve(path.resolve(__dirname, '../src/vendor/swfobject.js')),
+        loader: 'exports-loader'
+        // options: {
+        //   exports: 'swfobject'
+        // }
       }
     ]
   },
   plugins: [
-    // new CopyWebpackPlugin({
-    //   patterns: [{ from: './src/assets', to: 'assets' }]
-    // }),
     new HtmlWebpackPlugin({
       inject: false,
       template: './src/start.html',
       filename: path.resolve(__dirname, '../layouts/partials/start.html'),
       minify: false
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
     })
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "name": "bullrong",
+  "version": "1.0.0",
+  "description": "A hugo template with bulma.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildlocal": "webpack --env mode=localtest",
+    "buildtest": "webpack --env mode=development",
+    "buildprod": "webpack --env mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zrong/bullrong.git"
+  },
+  "author": "zrong",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/zrong/bullrong/issues"
+  },
+  "homepage": "https://github.com/zrong/bullrong#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "bulma": "^0.9.1",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^5.0.0-beta.1",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-merge": "^5.7.2"
+  },
+  "dependencies": {}
+}

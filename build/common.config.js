@@ -51,13 +51,6 @@ module.exports = {
           name: '[path][name].[ext]',
           outputPath: staticDir
         }
-      },
-      {
-        test: require.resolve(path.resolve(__dirname, '../src/vendor/swfobject.js')),
-        loader: 'exports-loader'
-        // options: {
-        //   exports: 'swfobject'
-        // }
       }
     ]
   },
